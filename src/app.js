@@ -6,8 +6,8 @@ class App extends React.Component {
 		return(
 			<div>
 			</div>
-			)
+		)
 	}
 }
 
-ReactDOM.render(<App />, document.getElementById("app"))
+ReactDOM.render(<App />, document.getElementById("app"));
