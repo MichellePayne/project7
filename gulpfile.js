@@ -7,6 +7,7 @@ const browserSync = require('browser-sync');
 const reload = browserSync.reload;
 const notify = require('gulp-notify');
 const plumber = require('gulp-plumber');
+const historyApiFallback = require('connect-history-api-fallback');
 
 gulp.task('js', () => {
     browserify('src/app.js', {debug: true})
@@ -28,8 +29,8 @@ gulp.task('js', () => {
 gulp.task('bs', () => {
     browserSync.init({
         server: {
-            baseDir: './',
-        }
+            baseDir: './'
+        },
         middleware: [historyApiFallback()]
     });
 });
