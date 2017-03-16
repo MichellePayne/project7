@@ -28,8 +28,9 @@ gulp.task('js', () => {
 gulp.task('bs', () => {
     browserSync.init({
         server: {
-            baseDir: './'
+            baseDir: './',
         }
+        middleware: [historyApiFallback()]
     });
 });
 
