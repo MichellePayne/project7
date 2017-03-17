@@ -54,8 +54,10 @@ export default class Header extends React.Component{
 				console.log(`logged in as ${success.email}`);
 			}),(error) => {
 				console.log(error);
-	}
-}	
+			}
+		
+	}	
+	
 	render() {
 		let loginForm = "";
 		if(this.state.formToShow === "signup" ) {

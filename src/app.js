@@ -19,11 +19,13 @@ class App extends React.Component{
 		this.state = {
 			activeGoals: [],
 			setGoal: " ",
-			deadline: " "
+			deadline: " ",
+			login: false
 		}
 		this.addGoal = this.addGoal.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
+
 	componentDidMount(){
 		const dbRef = firebase.database().ref();
 		firebase.auth().onAuthStateChanged((user) => {
@@ -41,7 +43,18 @@ class App extends React.Component{
 					});
 				});
 			}
+			if(user != null) {
+				this.setState({
+					login: true
+				})
+			} else {
+				this.setState({
+					login: false
+				})
+			}
+			console.log(user);
 		});
+
 	}
 	handleChange(e){
 		this.setState({
@@ -50,22 +63,24 @@ class App extends React.Component{
 	}
 	addGoal(e) {
 		e.preventDefault();
-		const goal= {
+		const goal = {
 			setGoal: this.state.setGoal,
 			deadline: this.state.deadline
 		};
 		const dbRef = firebase.database().ref();
 		dbRef.push(goal);
 	}
+
 	removeGoal(goalToRemove) {
 		const dbRef= firebase.database().ref(goalToRemove.key);
 		dbRef.remove();
 	}
 
 	render() {
+		
 		return (
 			<div>
-				<Header />
+				<Header login={this.login} />
 				<section>
 					<form onSubmit={this.addGoal} className="addGoals">
 						<label htmlFor="setGoal">Set your goal</label>
