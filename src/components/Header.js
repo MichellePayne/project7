@@ -10,11 +10,11 @@ export default class Header extends React.Component{
 			password: "",
 			confirm: ""
 		};
-	this.formToShow = this.formToShow.bind(this);
-	this.handleChange = this.handleChange.bind(this);
-	this.signup = this.signup.bind(this);
-	this.login = this.login.bind(this);
-	this.signout = this.signout.bind(this);
+		this.formToShow = this.formToShow.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.signup = this.signup.bind(this);
+		this.login = this.login.bind(this);
+		this.signout = this.signout.bind(this);
 	}
 	formToShow(e) {
 		e.preventDefault();
@@ -73,9 +73,8 @@ export default class Header extends React.Component{
 					<input type="password" name="confirm" onChange={this.handleChange} />
 					<button>Sign Up</button>
 				</form>
-			);
-		}
-		else if(this.state.formToShow === "login") {
+			)
+		} else if(this.state.formToShow === "login") {
 			loginForm = (
 				<form onSubmit={this.login} className="user-form">
 					<label htmlFor="email">Email</label>
@@ -84,7 +83,7 @@ export default class Header extends React.Component{
 					<input type="password" name="password" onChange={this.handleChange}/>
 					<button>Sign In</button>
 				</form>
-			);
+			)
 		}
 		return (
 			<div>

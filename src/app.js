@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './components/Header';
-import {Router, Route, browserHistory } from 'react-router'
+import {Router, Route, browserHistory } from 'react-router';
 import Goals from './components/Goals';
 // import Footer from './components/Footer';
 var config = {
@@ -77,11 +77,11 @@ class App extends React.Component{
 	}
 
 	render() {
-		
-		return (
-			<div>
-				<Header login={this.login} />
+		let loggedin;
+		if (this.state.login === true ) {
+			return (
 				<section>
+					<Header />
 					<form onSubmit={this.addGoal} className="addGoals">
 						<label htmlFor="setGoal">Set your goal</label>
 						<input type="text" name="setGoal" onChange={this.handleChange}/>
@@ -95,7 +95,12 @@ class App extends React.Component{
 					})}
 					</ul>
 				</section>
-			
+			)
+		}
+		return (
+			<div>
+				<Header />
+				{loggedin}
 			</div>
 		)
 	}
@@ -104,6 +109,5 @@ class App extends React.Component{
 ReactDOM.render(
 	<Router history={browserHistory}>
 		<Route path="/" component={App} />
-		<Route path="/goals" component={Goals} />
 	</Router>, document.getElementById('app'));	
 
